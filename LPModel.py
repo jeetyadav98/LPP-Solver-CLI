@@ -34,7 +34,7 @@ def get_constraint(var_dict):
 def print_intro():
     print(colored('\nCreate an LP Model from user inputs. Requirements:','cyan'))
     print(colored('-- Objective function (to minimize or maximize)','cyan'))
-    print(colored('-- Nonnegative decision variables (N) \n','cyan'))
+    print(colored('-- Nonnegative decision variables (N)','cyan'))
     print(colored('-- Inequality or Equality constraints (M)','cyan'))
 
 def get_args():
@@ -42,7 +42,7 @@ def get_args():
     print_intro()
 
     #Get type of optimization and create LpProblem
-    type_string= input(colored('Type of optimization [max/min]: ','cyan'))
+    type_string= input(colored('\nType of optimization [max/min]: ','cyan'))
     if type_string=='min':
         Lp_prob= p.LpProblem('Problem', p.LpMinimize)
     elif type_string=='max':
