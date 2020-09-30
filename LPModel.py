@@ -3,8 +3,11 @@ import numpy as np
 import pulp as p
 from termcolor import colored
 
+def cyanc(string):
+    return (colored(string, 'cyan'))
+
 def make_variable_dictionary(n_var):
-    print(colored('\nEnter variable names ', 'cyan'))
+    print(cyanc('\nEnter variable names '))
     print(colored('Any alphabet except from the word var_dict', 'red'))
     var_dict= {}
     for i in range(n_var):
@@ -14,7 +17,7 @@ def make_variable_dictionary(n_var):
     return var_dict
 
 def get_objective(var_dict):
-    obj_string= input(colored('\nEnter the objective function: ','cyan'))
+    obj_string= input(cyanc('\nEnter the objective function: '))
 
     for key,value in var_dict.items():
         var_key = "var_dict['" + key + "']"
@@ -32,17 +35,17 @@ def get_constraint(var_dict):
     return con_string  
 
 def print_intro():
-    print(colored('\nCreate an LP Model from user inputs. Requirements:','cyan'))
-    print(colored('-- Objective function (to minimize or maximize)','cyan'))
-    print(colored('-- Nonnegative decision variables (N)','cyan'))
-    print(colored('-- Inequality or Equality constraints (M)','cyan'))
+    print(cyanc('\nCreate an LP Model from user inputs. Requirements:'))
+    print(cyanc('-- Objective function (to minimize or maximize)'))
+    print(cyanc('-- Nonnegative decision variables (N)'))
+    print(cyanc('-- Inequality or Equality constraints (M)'))
 
 def get_args():
     #Print command line introduction
     print_intro()
 
     #Get type of optimization and create LpProblem
-    type_string= input(colored('\nType of optimization [max/min]: ','cyan'))
+    type_string= input(cyanc('\nType of optimization [max/min]: '))
     if type_string=='min':
         Lp_prob= p.LpProblem('Problem', p.LpMinimize)
     elif type_string=='max':
@@ -54,8 +57,8 @@ def get_args():
     print(colored('Optimization type selected is ', 'red') + type_string)
     
     # Get number of variables and constraints
-    n_var= int(input(colored('\nNumber of decision variables: ', 'cyan')))
-    n_con= int(input(colored('Number of constraints (excluding nonnegative): ', 'cyan')))
+    n_var= int(input(cyanc('\nNumber of decision variables: ',)))
+    n_con= int(input(cyanc('Number of constraints (excluding nonnegative): ',)))
 
     #Get variable names and make dictionary
     var_dict = make_variable_dictionary(n_var)
@@ -64,7 +67,7 @@ def get_args():
     Lp_prob += eval(get_objective(var_dict))
     
     #Get constraints and add to LP
-    print(colored('\nEnter constraints', 'cyan') + '[of form a1*x1 + a2*x2.. (<= , == , >=) RHS]')
+    print(cyanc('\nEnter constraints',) + '[of form a1*x1 + a2*x2.. (<= , == , >=) RHS]')
     for j in range(n_con):
         Lp_prob += eval(get_constraint(var_dict))
 
@@ -78,13 +81,13 @@ def main():
     var_dict= Lp_model[1]
 
     #Print problem summary
-    print(colored('\nProblem Summary: ', 'cyan'))
+    print(cyanc('\nProblem Summary: ',))
     print(Lp_prob)
 
-    print(colored('------------------------------------------','cyan'))
+    print(cyanc('------------------------------------------'))
     Lp_solve= Lp_prob.solve()
-    print(colored('------------------------------------------','cyan'))
-    print(colored('Solution status', 'cyan'), p.LpStatus[Lp_solve])
+    print(cyanc('------------------------------------------'))
+    print(cyanc('Solution status'), p.LpStatus[Lp_solve])
 
     #Print solution
     for key,value in var_dict.items():
