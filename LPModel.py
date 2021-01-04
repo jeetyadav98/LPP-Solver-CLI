@@ -1,7 +1,18 @@
 import sys, os
-import numpy as np
 import pulp as p
 from termcolor import colored
+
+'''
+Description:
+Command line tool to solve linear programming problems. Run the main script to enter the problem statement interactively. The solution is displayed in the terminal.
+
+Author: Jeet Yadav
+
+License: MIT License
+
+Notes:
+This script may be updated in the future, for further convenience. Optional input/output from files, allowing mixed integer problems etc. The latest version can be found at https://github.com/jeetyadav98/LPP-Solver-CLI.
+'''
 
 def cyanc(string):
     return (colored(string, 'cyan'))
