@@ -1,4 +1,4 @@
-# Optimization-code
+# LPP-Solver-CLI
 Command line tool to solve LP Problems using PuLP. 
 
 Install the requirements with ```pip3 install -r requirements.txt```
