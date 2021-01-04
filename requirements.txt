@@ -1,0 +1,2 @@
+Termcolor>=1.1.0
+pulp>=2.3
